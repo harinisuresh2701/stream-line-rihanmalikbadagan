@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Sender.h"
+#include "bmsSender.h"
 
-status_en senderProcess(void)
+status_en receiverProcess(void)
 {
 	printf("Inside receiver process\n");
 

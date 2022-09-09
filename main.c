@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "bmsSender.h"
+#include "bmsReceiver.h"
 
 main()
 {

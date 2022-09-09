@@ -1,1 +1,1 @@
-//Code
+void receiverProcess(void);
