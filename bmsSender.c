@@ -38,7 +38,7 @@ status_en createCsvFile(void)
     if(fd == NULL) 
         return FAILURE;
 
-    fclose(f);
+    fclose(fd);
     return SUCCESS;
 }
 
