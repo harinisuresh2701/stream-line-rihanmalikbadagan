@@ -24,18 +24,18 @@ void printBatteryData(int count, float batteryTemp, float batterySoc)
 status_en writeToCsv(int count, float batteryTemp, float batterySoc)
 {
     FILE *fd = fopen(CSV_FILE, "a");
-    if(f==NULL) 
+    if(fd == NULL) 
         return FAILURE;
         
-    fprintf(fd,"%d,%s,%f\n",count, batteryTemp, batterySoc);
+    fprintf(fd,"%d,%f,%f\n",count, batteryTemp, batterySoc);
     fclose(fd);
     return SUCCESS;
 }
 
 status_en createCsvFile(void)
 {
-    FILE *f=fopen(CSV_FILE, "w");
-    if(f==NULL) 
+    FILE *fd = fopen(CSV_FILE, "w");
+    if(fd == NULL) 
         return FAILURE;
 
     fclose(f);

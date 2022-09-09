@@ -4,7 +4,7 @@
 #include "bmsSender.h"
 #include "bmsReceiver.h"
 
-main()
+int main()
 {
     // Creating child process
     int p = fork();
