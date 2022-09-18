@@ -48,7 +48,7 @@ status_en senderProcess(void)
     printf("Inside sender process\n");
 	batteryParameters *batteryParam;
     batteryParam = (batteryParameters *)malloc(sizeof(batteryParameters));
-    status_en result = SUCCESS;
+    int result = SUCCESS;
     createCsvFile();
 
     for (batteryParam->index = 1; batteryParam->index <= NUM_OF_READINGS; batteryParam->index++)
