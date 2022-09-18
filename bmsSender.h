@@ -20,3 +20,8 @@ status_en generateBatteryData(batteryParameters *ptr_BatteryParam);
 status_en writeToCsv(batteryParameters *ptr_BatteryParam);
 status_en createCsvFile(void);
 int senderProcess(void);
+
+void TEST_SENDER(void);
+void TEST_senderProcess(void);
+void TEST_writeToCsv(void);
+void TEST_generateBatteryData(void);
