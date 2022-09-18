@@ -12,8 +12,8 @@ typedef struct{
 }batteryParameters;
 
 typedef enum{
-	SUCCESS,
-	FAILURE
+	FAILURE,
+   SUCCESS
 }status_en;
 
 status_en generateBatteryData(batteryParameters *ptr_BatteryParam);

@@ -49,7 +49,7 @@ int senderProcess(void)
 	batteryParameters *batteryParam;
     batteryParam = (batteryParameters *)malloc(sizeof(batteryParameters));
     int result = SUCCESS;
-    createCsvFile();
+    result &= createCsvFile();
 
     for (batteryParam->index = 1; batteryParam->index <= NUM_OF_READINGS; batteryParam->index++)
     {
