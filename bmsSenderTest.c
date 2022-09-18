@@ -11,6 +11,7 @@ void TEST_generateBatteryData(void)
     batteryParam = (batteryParameters *)malloc(sizeof(batteryParameters));
     result = generateBatteryData(batteryParam);
     assert(result == SUCCESS);
+    free(batteryParam);
 
     batteryParam = NULL;
     result = generateBatteryData(batteryParam);
@@ -25,6 +26,7 @@ void TEST_writeToCsv(void)
     batteryParam = (batteryParameters *)malloc(sizeof(batteryParameters));
     result = writeToCsv(batteryParam);
     assert(result == SUCCESS);
+    free(batteryParam);
 
     batteryParam = NULL;
     result = writeToCsv(batteryParam);

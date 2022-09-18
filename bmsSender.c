@@ -57,5 +57,7 @@ int senderProcess(void)
         result &= generateBatteryData(batteryParam);
         result &= writeToCsv(batteryParam);
     }
+
+    free(batteryParam);
 	return result;
 }
