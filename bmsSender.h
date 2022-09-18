@@ -18,6 +18,5 @@ typedef enum{
 
 status_en generateBatteryData(batteryParameters *ptr_BatteryParam);
 status_en writeToCsv(batteryParameters *ptr_BatteryParam);
-status_en senderProcess(void);
 status_en createCsvFile(void);
-
+int senderProcess(void);

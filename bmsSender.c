@@ -43,7 +43,7 @@ status_en createCsvFile(void)
     return SUCCESS;
 }
 
-status_en senderProcess(void)
+int senderProcess(void)
 {
     printf("Inside sender process\n");
 	batteryParameters *batteryParam;
