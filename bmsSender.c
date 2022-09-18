@@ -21,10 +21,10 @@ status_en writeToCsv(batteryParameters *ptr_BatteryParam)
 
     if(fd == NULL) 
         return FAILURE;
-        
+
     if (ptr_BatteryParam != NULL)
     {
-        printf("%d - Temperature: %.f, SOC: %.f\n", ptr_BatteryParam->index, ptr_BatteryParam->temperature, ptr_BatteryParam->soc);
+        printf("%d - Temperature: %f, SOC: %f\n", ptr_BatteryParam->index, ptr_BatteryParam->temperature, ptr_BatteryParam->soc);
         fprintf(fd,"%d,%f,%f\n", ptr_BatteryParam->index, ptr_BatteryParam->temperature, ptr_BatteryParam->soc);
         fclose(fd);
         return SUCCESS;
@@ -45,11 +45,12 @@ status_en createCsvFile(void)
 status_en senderProcess(void)
 {
     printf("Inside sender process\n");
-	batteryParameters batteryParam;
+	batteryParameters *batteryParam;
+    batteryParam = (batteryParameters *)malloc(sizeof(batteryParameters));
     status_en result = SUCCESS;
     createCsvFile();
 
-    for (batteryParam.index = 1; batteryParam.index <= NUM_OF_READINGS; batteryParam.index++)
+    for (batteryParam->index = 1; batteryParam->index <= NUM_OF_READINGS; batteryParam->index++)
     {
         //Generate data for Battery parameters and print to console
         result &= generateBatteryData(&batteryParam);

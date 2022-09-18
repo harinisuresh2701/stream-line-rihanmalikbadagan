@@ -16,9 +16,8 @@ typedef enum{
 	FAILURE
 }status_en;
 
-void generateBatteryData(batteryParameters *ptr_BatteryParam);
-void printBatteryData(int count, float batteryTemp, float batterySoc);
-status_en writeToCsv(int count, float batteryTemp, float batterySoc);
+status_en generateBatteryData(batteryParameters *ptr_BatteryParam);
+status_en writeToCsv(batteryParameters *ptr_BatteryParam);
 status_en senderProcess(void);
 status_en createCsvFile(void);
 
