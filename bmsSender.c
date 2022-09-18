@@ -53,8 +53,8 @@ status_en senderProcess(void)
     for (batteryParam->index = 1; batteryParam->index <= NUM_OF_READINGS; batteryParam->index++)
     {
         //Generate data for Battery parameters and print to console
-        result &= generateBatteryData(&batteryParam);
-        result &= writeToCsv(&batteryParam);
+        result &= generateBatteryData(batteryParam);
+        result &= writeToCsv(batteryParam);
     }
 	return result;
 }
