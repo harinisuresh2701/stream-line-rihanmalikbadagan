@@ -2,34 +2,34 @@
 #include <stdlib.h>
 #include "bmsSender.h"
 
-void generateBatteryData(batteryParameters *ptr_BatteryParam)
+status_en generateBatteryData(batteryParameters *ptr_BatteryParam)
 {
-	//generate data for Battery parameters
-	for(int index = 0; index < NUM_OF_READINGS; index++)
+    if (ptr_BatteryParam != NULL)
     {
-		ptr_BatteryParam->temperature[index] = (rand()%(TEMP_MAX - TEMP_MIN + 1)) + TEMP_MIN;
-		ptr_BatteryParam->soc[index] = (rand()%(SOC_MAX - SOC_MIN + 1)) + SOC_MIN;
-        printBatteryData(index + 1, ptr_BatteryParam->temperature[index], ptr_BatteryParam->soc[index]);
-        writeToCsv(index + 1, ptr_BatteryParam->temperature[index], ptr_BatteryParam->soc[index]);
-	}
+        int index =  ptr_BatteryParam->index;
+        //generate data for Battery parameters
+        ptr_BatteryParam->temperature[index] = (rand()%(TEMP_MAX - TEMP_MIN + 1)) + TEMP_MIN;
+        ptr_BatteryParam->soc[index] = (rand()%(SOC_MAX - SOC_MIN + 1)) + SOC_MIN;
+        return SUCCESS;
+    }
+    return FAILURE;
 }
 
-void printBatteryData(int count, float batteryTemp, float batterySoc)
-{
-
-	//Print BaterryParameters data to console
-	printf("%d - Temperature: %.f, SOC: %.f\n",count, batteryTemp, batterySoc);
-}
-
-status_en writeToCsv(int count, float batteryTemp, float batterySoc)
+status_en writeToCsv(batteryParameters *ptr_BatteryParam)
 {
     FILE *fd = fopen(CSV_FILE, "a");
+
     if(fd == NULL) 
         return FAILURE;
         
-    fprintf(fd,"%d,%f,%f\n",count, batteryTemp, batterySoc);
-    fclose(fd);
-    return SUCCESS;
+    if (ptr_BatteryParam != NULL)
+    {
+        printf("%d - Temperature: %.f, SOC: %.f\n", ptr_BatteryParam->index, ptr_BatteryParam->temperature, ptr_BatteryParam->soc);
+        fprintf(fd,"%d,%f,%f\n", ptr_BatteryParam->index, ptr_BatteryParam->temperature, ptr_BatteryParam->soc);
+        fclose(fd);
+        return SUCCESS;
+    }
+    return FAILURE;
 }
 
 status_en createCsvFile(void)
@@ -45,11 +45,15 @@ status_en createCsvFile(void)
 status_en senderProcess(void)
 {
     printf("Inside sender process\n");
-	batteryParameters BatteryParam;
-
+	batteryParameters batteryParam;
+    status_en result = SUCCESS;
     createCsvFile();
-	//Generate data for Battery parameters and print to console
-	generateBatteryData(&BatteryParam);
 
-	return SUCCESS;
+    for (batteryParam.index = 1; batteryParam.index <= NUM_OF_READINGS; batteryParam.index++)
+    {
+        //Generate data for Battery parameters and print to console
+        result &= generateBatteryData(&batteryParam);
+        result &= writeToCsv(&batteryParam);
+    }
+	return result;
 }

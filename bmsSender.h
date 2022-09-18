@@ -6,6 +6,7 @@
 #define CSV_FILE "BMSData.csv"
 
 typedef struct{
+   int index;
    float temperature[NUM_OF_READINGS];
    float soc[NUM_OF_READINGS];
 }batteryParameters;
