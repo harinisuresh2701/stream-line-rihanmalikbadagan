@@ -15,4 +15,6 @@ int main()
         receiverProcess();
     }
 
+    TEST_SENDER();
+    return 0;
 }

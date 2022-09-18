@@ -38,11 +38,9 @@ void TEST_senderProcess(void)
     assert(result == SUCCESS);
 }
 
-int main ()
+void TEST_SENDER(void)
 {
     TEST_generateBatteryData();
     TEST_writeToCsv();
     TEST_senderProcess();
-
-    return 0;
 }
