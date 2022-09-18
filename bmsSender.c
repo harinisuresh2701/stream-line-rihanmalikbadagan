@@ -18,14 +18,15 @@ status_en generateBatteryData(batteryParameters *ptr_BatteryParam)
 status_en writeToCsv(batteryParameters *ptr_BatteryParam)
 {
     FILE *fd = fopen(CSV_FILE, "a");
+    int index =  ptr_BatteryParam->index;
 
     if(fd == NULL) 
         return FAILURE;
 
     if (ptr_BatteryParam != NULL)
     {
-        printf("%d - Temperature: %f, SOC: %f\n", ptr_BatteryParam->index, ptr_BatteryParam->temperature, ptr_BatteryParam->soc);
-        fprintf(fd,"%d,%f,%f\n", ptr_BatteryParam->index, ptr_BatteryParam->temperature, ptr_BatteryParam->soc);
+        printf("%d - Temperature: %f, SOC: %f\n", index, ptr_BatteryParam->temperature[index], ptr_BatteryParam->soc[index]);
+        fprintf(fd,"%d,%f,%f\n", index, ptr_BatteryParam->temperature[index], ptr_BatteryParam->soc[index]);
         fclose(fd);
         return SUCCESS;
     }
