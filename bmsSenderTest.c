@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
+#include <stdlib.h>
 #include "bmsSender.h"
 
 void TEST_generateBatteryData(void)
